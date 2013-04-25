@@ -9,7 +9,7 @@ from docutils import nodes, utils
 from sphinx.util.nodes import split_explicit_title
 from string import lower
 
-def php_namespace_role(typ, rawtext, text, lineno, inliner, options={}, content=[]):
+def symfony_namespace_role(typ, rawtext, text, lineno, inliner, options={}, content=[]):
     text = utils.unescape(text)
     env = inliner.document.settings.env
     base_url = env.app.config.api_url
@@ -32,7 +32,7 @@ def php_namespace_role(typ, rawtext, text, lineno, inliner, options={}, content=
     pnode = nodes.literal('', '', *list)
     return [pnode], []
 
-def php_class_role(typ, rawtext, text, lineno, inliner, options={}, content=[]):
+def symfony_class_role(typ, rawtext, text, lineno, inliner, options={}, content=[]):
     text = utils.unescape(text)
     env = inliner.document.settings.env
     base_url = env.app.config.api_url
@@ -55,7 +55,7 @@ def php_class_role(typ, rawtext, text, lineno, inliner, options={}, content=[]):
     pnode = nodes.literal('', '', *list)
     return [pnode], []
 
-def php_method_role(typ, rawtext, text, lineno, inliner, options={}, content=[]):
+def symfony_method_role(typ, rawtext, text, lineno, inliner, options={}, content=[]):
     text = utils.unescape(text)
     env = inliner.document.settings.env
     base_url = env.app.config.api_url
@@ -120,9 +120,9 @@ def php_phpfunction_role(typ, rawtext, text, lineno, inliner, options={}, conten
 
 def setup(app):
     app.add_config_value('api_url', {}, 'env')
-    app.add_role('namespace', php_namespace_role)
-    app.add_role('class', php_class_role)
-    app.add_role('method', php_method_role)
+    app.add_role('symfonynamespace', symfony_namespace_role)
+    app.add_role('symfonyclass', symfony_class_role)
+    app.add_role('symfonymethod', symfony_method_role)
     app.add_role('phpclass', php_phpclass_role)
     app.add_role('phpmethod', php_phpmethod_role)
     app.add_role('phpfunction', php_phpfunction_role)
